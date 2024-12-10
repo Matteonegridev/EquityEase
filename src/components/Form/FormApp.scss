@@ -1,0 +1,14 @@
+@use "/src/scss/utils/functions" as f;
+@use "/src/scss/utils/mixins" as m;
+@use "/src/scss/utils/variables" as *;
+@use "sass:map";
+
+.form {
+  @include m.flex(_, center, column);
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  padding-top: f.rem(15);
+  font-family: $font;
+  font-weight: map.get($font-weights, "bold");
+}

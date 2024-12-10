@@ -1,0 +1,21 @@
+@font-face {
+  font-family: PlusJakartaSans;
+  src: url(/assets/fonts/static/PlusJakartaSans-Medium.ttf) format("ttf"),
+    url(/assets/fonts/static/PlusJakartaSans-Bold.ttf) format("ttf");
+}
+
+$font: "Plus Jakarta Sans";
+
+$Lime: rgb(215, 218, 47);
+$Red: rgb(215, 51, 40);
+$White: hsl(0, 0%, 100%);
+$Slate-100: hsl(202, 86%, 94%);
+$Slate-300: hsl(203, 41%, 72%);
+$Slate-500: hsl(200, 26%, 54%);
+$Slate-700: hsl(200, 24%, 40%);
+$Slate-900: hsl(202, 55%, 16%);
+$Font-paragraph: 16px;
+$font-weights: (
+  "regular": 500,
+  "bold": 700,
+);

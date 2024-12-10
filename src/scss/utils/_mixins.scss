@@ -1,0 +1,11 @@
+@mixin flex($alignItem, $justifyContent, $flexDirection) {
+  display: flex;
+  flex-direction: $flexDirection;
+  align-items: $alignItem;
+  justify-content: $justifyContent;
+}
+
+@mixin centerDiv($left: auto, $right: auto) {
+  margin-left: $left;
+  margin-right: $right;
+}
