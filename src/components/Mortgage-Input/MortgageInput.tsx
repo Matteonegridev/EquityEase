@@ -1,14 +1,21 @@
-import { ComponentProps, useState } from "react";
+import { ComponentProps } from "react";
+import "./Mortgageinput.scss";
 
 type InputProps = ComponentProps<"input"> & {
   text: string;
 };
 
-function MortgageInput({ text, ...rest }: InputProps) {
+function MortgageInput({ text }: InputProps) {
   return (
     <>
       <label className="form__label">{text}</label>
-      <input {...rest} className="form__input" required />
+      <input
+        defaultValue=""
+        min="1"
+        className="form__input"
+        type="number"
+        required
+      />
     </>
   );
 }

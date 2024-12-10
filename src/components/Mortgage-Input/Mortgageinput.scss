@@ -1,0 +1,14 @@
+@use "/src/scss/utils/functions" as f;
+@use "/src/scss/utils/variables" as *;
+@use "/src/scss/utils/mixins" as m;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
