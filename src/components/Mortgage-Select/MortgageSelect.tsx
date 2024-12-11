@@ -17,7 +17,6 @@ function MortgageSelect({ check, text, id, onChange, value }: Props) {
         className="form__select--input"
         type="radio"
         checked={check}
-        required
         onChange={onChange}
         value={value}
         name="type"

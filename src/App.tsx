@@ -4,14 +4,23 @@ import MortgageInput from "./components/Mortgage-Input/MortgageInput";
 import MortgageSelect from "./components/Mortgage-Select/MortgageSelect";
 import Result from "./components/Result/Result";
 import SubmitButton from "./components/Submit-Button/SubmitButton";
+import useError from "./hooks/useError";
+
+type InputState = {
+  amount: string;
+  term: string;
+  rate: string;
+  type: string;
+};
 
 function App() {
-  const [inputValue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState<InputState>({
     amount: "",
     term: "",
     rate: "",
     type: "",
   });
+  const { isError, handleErrors } = useError(inputValue as InputState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,9 +31,17 @@ function App() {
     }));
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newErrors = handleErrors(inputValue);
+    if (Object.keys(newErrors).length === 0) {
+      // onCalculateMortgage(values.amount, values.term, values.rate);
+    }
+  };
+
   return (
     <div>
-      <FormApp>
+      <FormApp onSubmit={onSubmit}>
         <MortgageInput
           id="amount"
           value={inputValue.amount}
@@ -32,6 +49,7 @@ function App() {
           text="Morgage Amount"
           name="amount"
         />
+        {isError.amount && <p className="form--error">Fiels is required</p>}
         <MortgageInput
           id="term"
           value={inputValue.term}
@@ -39,6 +57,7 @@ function App() {
           text="Mortgage Term"
           name="term"
         />
+        {isError.term && <p className="form--error">Fiels is required</p>}
         <MortgageInput
           id="rate"
           value={inputValue.rate}
@@ -49,6 +68,7 @@ function App() {
           max="100"
           step="0.01"
         />
+        {isError.rate && <p className="form--error">Fiels is required</p>}
         <MortgageSelect
           id="repayment"
           text="Repayment"
@@ -63,6 +83,7 @@ function App() {
           check={inputValue.type === "interest"}
           onChange={handleChange}
         />
+        {isError.type && <p className="form--error">Please select one</p>}
         <SubmitButton text="Calculate Repayments" />
         <Result />
       </FormApp>

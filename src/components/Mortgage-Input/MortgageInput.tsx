@@ -11,7 +11,7 @@ function MortgageInput({ text, id, ...rest }: InputProps) {
       <label htmlFor={id} className="form__label">
         {text}
       </label>
-      <input {...rest} className="form__input" type="number" required id={id} />
+      <input {...rest} className="form__input" type="number" id={id} />
     </>
   );
 }

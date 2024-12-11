@@ -3,11 +3,12 @@ import "./FormApp.scss";
 
 type FormProps = {
   children: ReactNode;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
-function FormApp({ children }: FormProps) {
+function FormApp({ children, onSubmit }: FormProps) {
   return (
-    <form className="form">
+    <form className="form" onSubmit={onSubmit}>
       <h1 className="form__title">Mortgage Calculator</h1>
       <button className="btn form--reset" type="reset">
         Clear All
