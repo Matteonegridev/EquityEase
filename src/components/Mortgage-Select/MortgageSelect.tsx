@@ -1,23 +1,26 @@
-function MortgageSelect() {
+type Props = {
+  check: boolean;
+  text: string;
+  id: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+};
+
+function MortgageSelect({ check, text, id, onChange, value }: Props) {
   return (
     <div className="form__select">
-      <label className="form__select--label" htmlFor="repayment">
-        Repayment
+      <label htmlFor={id} className="form__select--label">
+        {text}
       </label>
       <input
+        id={id}
         className="form__select--input"
-        name="repayment"
-        type="checkbox"
+        type="radio"
+        checked={check}
         required
-      />
-      <label className="form__select--label" htmlFor="interest">
-        Interest Only
-      </label>
-      <input
-        className="form__select--input"
-        name="interest"
-        type="checkbox"
-        required
+        onChange={onChange}
+        value={value}
+        name="type"
       />
     </div>
   );
