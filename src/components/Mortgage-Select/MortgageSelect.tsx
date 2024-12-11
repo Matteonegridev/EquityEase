@@ -4,10 +4,11 @@ type Props = ComponentProps<"input"> & {
   text: string;
   name: string;
   id: string;
+  error?: string;
 };
 
 const MorgageSelect = forwardRef<HTMLInputElement, Props>(
-  ({ value, text, id, ...rest }, ref) => {
+  ({ value, text, id, error, ...rest }, ref) => {
     return (
       <div className="form__select">
         <label htmlFor={id} className="form__select--label">
@@ -21,6 +22,7 @@ const MorgageSelect = forwardRef<HTMLInputElement, Props>(
           value={value}
           ref={ref}
         />
+        {error && <p className="form--error">{error}</p>}
       </div>
     );
   }

@@ -4,6 +4,7 @@ import MortgageInput from "../Mortgage-Input/MortgageInput";
 import MortgageSelect from "../Mortgage-Select/MortgageSelect";
 import { ReactNode } from "react";
 
+// INFER TYPES FOR THE ENTRY WE NEED:
 type InputState = {
   amount: string;
   term: string;
@@ -23,6 +24,10 @@ function FormApp({ children }: FormProp) {
     formState: { errors },
   } = useForm<InputState>();
 
+  const onReset = () => {
+    reset();
+  };
+
   const onSubmit = (data: InputState) => {
     console.log("Form submitted:", data);
     reset();
@@ -30,7 +35,7 @@ function FormApp({ children }: FormProp) {
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="form__title">Mortgage Calculator</h1>
-      <button className="btn form--reset" type="reset">
+      <button className="btn form--reset" type="reset" onClick={onReset}>
         Clear All
       </button>
       <Controller
@@ -82,7 +87,6 @@ function FormApp({ children }: FormProp) {
         render={({ field }) => (
           <>
             <MortgageSelect
-              defaultChecked={true}
               id="repayment"
               {...field}
               text="Repayment"
@@ -93,6 +97,7 @@ function FormApp({ children }: FormProp) {
               {...field}
               text="Interest Only"
               value="interest"
+              error={errors.type?.message}
             />
           </>
         )}

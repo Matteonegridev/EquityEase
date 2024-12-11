@@ -1,6 +1,7 @@
 @use "/src/scss/utils/functions" as f;
 @use "/src/scss/utils/variables" as *;
 @use "/src/scss/utils/mixins" as m;
+@use "sass:map";
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -11,4 +12,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+.form--error {
+  font-size: f.rem(10);
+  color: $red;
+  font-weight: map.get($font-weights, "regular");
 }
