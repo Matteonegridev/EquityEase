@@ -71,13 +71,13 @@ function App() {
           )}
         />
         <Controller
-          defaultValue="repayment"
           name="type"
           control={control}
           rules={{ required: "Field is required" }}
           render={({ field }) => (
             <>
               <MortgageSelect
+                defaultChecked={true}
                 id="repayment"
                 {...field}
                 text="Repayment"
@@ -92,7 +92,6 @@ function App() {
             </>
           )}
         />
-
         <SubmitButton text="Calculate Repayments" />
         <Result />
       </FormApp>
