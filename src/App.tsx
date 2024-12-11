@@ -1,10 +1,9 @@
-import { useState } from "react";
 import FormApp from "./components/Form/FormApp";
 import MortgageInput from "./components/Mortgage-Input/MortgageInput";
 import MortgageSelect from "./components/Mortgage-Select/MortgageSelect";
 import Result from "./components/Result/Result";
 import SubmitButton from "./components/Submit-Button/SubmitButton";
-import useError from "./hooks/useError";
+import { useForm, Controller } from "react-hook-form";
 
 type InputState = {
   amount: string;
@@ -14,76 +13,86 @@ type InputState = {
 };
 
 function App() {
-  const [inputValue, setInputValue] = useState<InputState>({
-    amount: "",
-    term: "",
-    rate: "",
-    type: "",
-  });
-  const { isError, handleErrors } = useError(inputValue as InputState);
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm<InputState>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setInputValue((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newErrors = handleErrors(inputValue);
-    if (Object.keys(newErrors).length === 0) {
-      // onCalculateMortgage(values.amount, values.term, values.rate);
-    }
+  const onSubmit = (data: InputState) => {
+    console.log("Form submitted:", data);
+    reset();
   };
 
   return (
     <div>
-      <FormApp onSubmit={onSubmit}>
-        <MortgageInput
-          id="amount"
-          value={inputValue.amount}
-          onChange={handleChange}
-          text="Morgage Amount"
+      <FormApp onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          defaultValue={""}
+          control={control}
           name="amount"
+          rules={{ required: "Field is required" }}
+          render={({ field }) => (
+            <MortgageInput
+              id="amount"
+              {...field}
+              text="Morgage Amount"
+              error={errors.amount?.message}
+            />
+          )}
         />
-        {isError.amount && <p className="form--error">Fiels is required</p>}
-        <MortgageInput
-          id="term"
-          value={inputValue.term}
-          onChange={handleChange}
-          text="Mortgage Term"
+        <Controller
+          defaultValue={""}
+          control={control}
           name="term"
+          rules={{ required: "Field is required" }}
+          render={({ field }) => (
+            <MortgageInput
+              id="term"
+              {...field}
+              text="Morgage Term"
+              error={errors.term?.message}
+            />
+          )}
         />
-        {isError.term && <p className="form--error">Fiels is required</p>}
-        <MortgageInput
-          id="rate"
-          value={inputValue.rate}
-          onChange={handleChange}
-          text="Interest Rate"
+        <Controller
+          defaultValue={""}
+          control={control}
           name="rate"
-          min="0"
-          max="100"
-          step="0.01"
+          rules={{ required: "Field is required" }}
+          render={({ field }) => (
+            <MortgageInput
+              id="rate"
+              {...field}
+              text="Interest Rate"
+              error={errors.rate?.message}
+            />
+          )}
         />
-        {isError.rate && <p className="form--error">Fiels is required</p>}
-        <MortgageSelect
-          id="repayment"
-          text="Repayment"
-          value="repayment"
-          check={inputValue.type === "repayment"}
-          onChange={handleChange}
+        <Controller
+          defaultValue="repayment"
+          name="type"
+          control={control}
+          rules={{ required: "Field is required" }}
+          render={({ field }) => (
+            <>
+              <MortgageSelect
+                id="repayment"
+                {...field}
+                text="Repayment"
+                value="repayment"
+              />
+              <MortgageSelect
+                id="interest"
+                {...field}
+                text="Interest Only"
+                value="interest"
+              />
+            </>
+          )}
         />
-        <MortgageSelect
-          id="interest"
-          text="Interest Only"
-          value="interest"
-          check={inputValue.type === "interest"}
-          onChange={handleChange}
-        />
-        {isError.type && <p className="form--error">Please select one</p>}
+
         <SubmitButton text="Calculate Repayments" />
         <Result />
       </FormApp>

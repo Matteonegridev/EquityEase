@@ -1,19 +1,29 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import "./Mortgageinput.scss";
 
 type InputProps = ComponentProps<"input"> & {
   text: string;
+  error: string | undefined;
 };
 
-function MortgageInput({ text, id, ...rest }: InputProps) {
-  return (
-    <>
-      <label htmlFor={id} className="form__label">
-        {text}
-      </label>
-      <input {...rest} className="form__input" type="number" id={id} />
-    </>
-  );
-}
+const MortgageInput = forwardRef<HTMLInputElement, InputProps>(
+  ({ text, id, error, ...rest }, ref) => {
+    return (
+      <>
+        <label htmlFor={id} className="form__label">
+          {text}
+        </label>
+        <input
+          {...rest}
+          className="form__input"
+          type="number"
+          id={id}
+          ref={ref}
+        />
+        {error && <p className="form--error">{error}</p>}
+      </>
+    );
+  }
+);
 
 export default MortgageInput;
