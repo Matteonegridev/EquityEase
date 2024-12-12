@@ -21,3 +21,18 @@ export const mortgageFunction = (
   );
   return { monthlyRepayment, totalRepayment };
 };
+
+export const interestOnly = (amount: string, rate: string) => {
+  const monthlyInterest = Number(rate) / 100 / 12;
+  const monthlyRepayment = Number(amount) * monthlyInterest;
+
+  const totalRepayment = monthlyRepayment * 12;
+  console.log(
+    "Total Repayment for one year:",
+    totalRepayment,
+    "Monthly Repayment (Interest Only):",
+    monthlyRepayment
+  );
+
+  return { monthlyRepayment, totalRepayment };
+};

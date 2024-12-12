@@ -5,7 +5,7 @@ import MortgageSelect from "../Mortgage-Select/MortgageSelect";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaValidation, schemaValues } from "../../utils/zodSchema";
 import SubmitButton from "../Submit-Button/SubmitButton";
-import { mortgageFunction } from "../../utils/mortgageFunction";
+import { mortgageFunction, interestOnly } from "../../utils/mortgageFunction";
 
 type FormProp = {
   setIsCalculated: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,6 +25,7 @@ function FormApp({ setIsCalculated }: FormProp) {
   const amount = watch("amount");
   const term = watch("term");
   const rate = watch("rate");
+  const type = watch("type");
 
   const onReset = () => {
     reset();
@@ -32,10 +33,16 @@ function FormApp({ setIsCalculated }: FormProp) {
 
   const onSubmit = (data: schemaValues) => {
     console.log("Form submitted:", data);
-    mortgageFunction(amount, term, rate);
+    // CHECK WHICH RADIO IS
+    if (type === "repayment") {
+      mortgageFunction(amount, term, rate);
+    } else {
+      interestOnly(amount, rate);
+    }
     setIsCalculated(true);
     reset();
   };
+
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="form__title">Mortgage Calculator</h1>
