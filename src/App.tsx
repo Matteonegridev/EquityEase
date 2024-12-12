@@ -1,15 +1,14 @@
+import { useState } from "react";
 import FormApp from "./components/Form/FormApp";
-
-import Result from "./components/Result/Result";
-import SubmitButton from "./components/Submit-Button/SubmitButton";
+import IdleResult from "./components/ResultNotDisplayed/IdleResult";
 
 function App() {
+  const [isCalculated, setIsCalculated] = useState(false);
+
   return (
     <div>
-      <FormApp>
-        <SubmitButton text="Calculate Repayments" />
-      </FormApp>
-      <Result />
+      <FormApp setIsCalculated={setIsCalculated} />
+      <IdleResult isCalculated={isCalculated} />
     </div>
   );
 }

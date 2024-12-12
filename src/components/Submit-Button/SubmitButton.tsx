@@ -5,11 +5,9 @@ type ButtonProps = ComponentProps<"button"> & {
 };
 
 function SubmitButton({ text }: ButtonProps) {
-  const handleSubmit = () => {};
-
   return (
     <div>
-      <button onClick={handleSubmit}>{text}</button>
+      <button type="submit">{text}</button>
     </div>
   );
 }

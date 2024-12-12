@@ -2,34 +2,38 @@ import { useForm, Controller } from "react-hook-form";
 import "./FormApp.scss";
 import MortgageInput from "../Mortgage-Input/MortgageInput";
 import MortgageSelect from "../Mortgage-Select/MortgageSelect";
-import { ReactNode } from "react";
-
-// INFER TYPES FOR THE ENTRY WE NEED:
-type InputState = {
-  amount: string;
-  term: string;
-  rate: string;
-  type: string;
-};
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schemaValidation, schemaValues } from "../../utils/zodSchema";
+import SubmitButton from "../Submit-Button/SubmitButton";
+import { mortgageFunction } from "../../utils/mortgageFunction";
 
 type FormProp = {
-  children: ReactNode;
+  setIsCalculated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function FormApp({ children }: FormProp) {
+function FormApp({ setIsCalculated }: FormProp) {
   const {
     handleSubmit,
     control,
     reset,
+    watch,
     formState: { errors },
-  } = useForm<InputState>();
+  } = useForm<schemaValues>({
+    resolver: zodResolver(schemaValidation),
+  });
+
+  const amount = watch("amount");
+  const term = watch("term");
+  const rate = watch("rate");
 
   const onReset = () => {
     reset();
   };
 
-  const onSubmit = (data: InputState) => {
+  const onSubmit = (data: schemaValues) => {
     console.log("Form submitted:", data);
+    mortgageFunction(amount, term, rate);
+    setIsCalculated(true);
     reset();
   };
   return (
@@ -42,7 +46,6 @@ function FormApp({ children }: FormProp) {
         defaultValue={""}
         control={control}
         name="amount"
-        rules={{ required: "Field is required" }}
         render={({ field }) => (
           <MortgageInput
             id="amount"
@@ -56,7 +59,6 @@ function FormApp({ children }: FormProp) {
         defaultValue={""}
         control={control}
         name="term"
-        rules={{ required: "Field is required" }}
         render={({ field }) => (
           <MortgageInput
             id="term"
@@ -70,7 +72,6 @@ function FormApp({ children }: FormProp) {
         defaultValue={""}
         control={control}
         name="rate"
-        rules={{ required: "Field is required" }}
         render={({ field }) => (
           <MortgageInput
             id="rate"
@@ -83,7 +84,6 @@ function FormApp({ children }: FormProp) {
       <Controller
         name="type"
         control={control}
-        rules={{ required: "Field is required" }}
         render={({ field }) => (
           <>
             <MortgageSelect
@@ -91,18 +91,20 @@ function FormApp({ children }: FormProp) {
               {...field}
               text="Repayment"
               value="repayment"
+              checked={field.value === "repayment"}
             />
             <MortgageSelect
               id="interest"
               {...field}
               text="Interest Only"
               value="interest"
+              checked={field.value === "interest"}
               error={errors.type?.message}
             />
           </>
         )}
       />
-      {children}
+      <SubmitButton text="Calculate Repayments" />
     </form>
   );
 }

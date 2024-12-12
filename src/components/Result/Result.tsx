@@ -1,4 +1,4 @@
-import ResultDisplay from "../../layout/ResultDisplay/ResultDisplay";
+import ResultDisplay from "../ResultDisplay/ResultDisplay";
 
 function Result() {
   return (
