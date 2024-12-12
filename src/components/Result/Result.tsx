@@ -4,29 +4,33 @@ function ResultDisplay() {
   const { mortgageResult, isChecked } = useContextHook();
 
   return (
-    <section>
-      <div>
-        <h1>Your Result</h1>
-        <p>
+    <section className="result-showed">
+      <div className="section">
+        <h1 className="section__title">Your Result</h1>
+        <p className="section__text">
           Your results are shown below based on the informations you provided.
           To adjust the results, edit the form and click "calculate repayment"
           again.{" "}
         </p>
       </div>
-      {isChecked === "repayment" && (
-        <div>
-          <h6>Your monthly repayment</h6>
-          <p>$ {mortgageResult.loanTotal}</p>
-          <p>$ {mortgageResult.loanMonthly}</p>
-        </div>
-      )}
-      {isChecked === "interest" && (
-        <div>
-          <h6>Your monthly repayment</h6>
-          <p>$ {mortgageResult.interestMonthly}</p>
-          <p>$ {mortgageResult.interestTotal}</p>
-        </div>
-      )}
+      <div className="result-showed--box">
+        {isChecked === "repayment" && (
+          <div className="box">
+            <h6 className="box__title">Your monthly repayment</h6>
+            <p className="box--yellow">$ {mortgageResult.loanMonthly}</p>
+            <h6 className="box__title">Total you'll repay over the term</h6>
+            <p className="box-white">$ {mortgageResult.loanTotal}</p>
+          </div>
+        )}
+        {isChecked === "interest" && (
+          <div className="box">
+            <h6 className="box__title">Your monthly interest</h6>
+            <p className="box--yellow">$ {mortgageResult.interestMonthly}</p>
+            <h6 className="box__title">Total interest over the term</h6>
+            <p className="box-white">$ {mortgageResult.interestTotal}</p>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

@@ -6,8 +6,10 @@ type ButtonProps = ComponentProps<"button"> & {
 
 function SubmitButton({ text }: ButtonProps) {
   return (
-    <div>
-      <button type="submit">{text}</button>
+    <div className="submit">
+      <button className="submit--button" type="submit">
+        {text}
+      </button>
     </div>
   );
 }

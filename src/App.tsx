@@ -1,5 +1,5 @@
 import FormApp from "./components/Form/FormApp";
-import IdleResult from "./components/ResultNotDisplayed/IdleResult";
+import ResultSection from "./components/ResultSection/ResultSection";
 import { ContextProvider } from "./utils/Context";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div>
       <ContextProvider>
         <FormApp />
-        <IdleResult />
+        <ResultSection />
       </ContextProvider>
     </div>
   );
