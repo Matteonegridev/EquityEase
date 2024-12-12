@@ -1,13 +1,11 @@
+import { useContextHook } from "../../hooks/useContext";
 import Result from "../Result/Result";
 
-type Result = {
-  isCalculated: boolean;
-};
-
-function IdleResult({ isCalculated }: Result) {
+function IdleResult() {
+  const { isChecked } = useContextHook();
   return (
     <div>
-      {isCalculated ? (
+      {isChecked !== null ? (
         <Result />
       ) : (
         <>

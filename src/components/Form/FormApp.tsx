@@ -8,12 +8,8 @@ import SubmitButton from "../Submit-Button/SubmitButton";
 import { mortgageFunction, interestOnly } from "../../utils/mortgageFunction";
 import { useContextHook } from "../../hooks/useContext";
 
-type FormProp = {
-  setIsCalculated: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-function FormApp({ setIsCalculated }: FormProp) {
-  const { setMortgageResult } = useContextHook();
+function FormApp() {
+  const { setMortgageResult, setIsChecked } = useContextHook();
   const {
     handleSubmit,
     control,
@@ -31,12 +27,14 @@ function FormApp({ setIsCalculated }: FormProp) {
 
   const onReset = () => {
     reset();
+    setIsChecked(null);
   };
 
   const onSubmit = (data: schemaValues) => {
     console.log("Form submitted:", data);
     // CHECK WHICH RADIO IS
     if (type === "repayment") {
+      setIsChecked("repayment");
       setMortgageResult((prev) => ({
         ...prev,
         loanTotal: String(mortgageFunction(amount, term, rate).totalRepayment),
@@ -45,13 +43,14 @@ function FormApp({ setIsCalculated }: FormProp) {
         ),
       }));
     } else {
+      setIsChecked("interest");
       setMortgageResult((prev) => ({
         ...prev,
         interestTotal: String(interestOnly(amount, rate).totalRepayment),
         interestMonthly: String(interestOnly(amount, rate).monthlyRepayment),
       }));
     }
-    setIsCalculated(true);
+
     reset();
   };
 

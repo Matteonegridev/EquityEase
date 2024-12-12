@@ -1,8 +1,10 @@
-import ResultDisplay from "../ResultDisplay/ResultDisplay";
+import { useContextHook } from "../../hooks/useContext";
 
-function Result() {
+function ResultDisplay() {
+  const { mortgageResult, isChecked } = useContextHook();
+
   return (
-    <main>
+    <section>
       <div>
         <h1>Your Result</h1>
         <p>
@@ -11,9 +13,22 @@ function Result() {
           again.{" "}
         </p>
       </div>
-      <ResultDisplay />
-    </main>
+      {isChecked === "repayment" && (
+        <div>
+          <h6>Your monthly repayment</h6>
+          <p>$ {mortgageResult.loanTotal}</p>
+          <p>$ {mortgageResult.loanMonthly}</p>
+        </div>
+      )}
+      {isChecked === "interest" && (
+        <div>
+          <h6>Your monthly repayment</h6>
+          <p>$ {mortgageResult.interestMonthly}</p>
+          <p>$ {mortgageResult.interestTotal}</p>
+        </div>
+      )}
+    </section>
   );
 }
 
-export default Result;
+export default ResultDisplay;
