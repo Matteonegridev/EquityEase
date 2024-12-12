@@ -6,13 +6,14 @@ export const mortgageFunction = (
   const monthlyInterest = Number(rate) / 100 / 12;
   const loanTerms = Number(term) * 12;
 
-  const monthlyRepayment =
+  const monthlyRepayment = (
     (Number(amount) *
       monthlyInterest *
       Math.pow(1 + monthlyInterest, loanTerms)) /
-    (Math.pow(1 + monthlyInterest, loanTerms) - 1);
+    (Math.pow(1 + monthlyInterest, loanTerms) - 1)
+  ).toFixed(2);
 
-  const totalRepayment = monthlyRepayment * loanTerms;
+  const totalRepayment = (Number(monthlyRepayment) * loanTerms).toFixed(2);
   console.log(
     "Total Repayment:",
     totalRepayment,

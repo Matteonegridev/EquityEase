@@ -6,12 +6,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaValidation, schemaValues } from "../../utils/zodSchema";
 import SubmitButton from "../Submit-Button/SubmitButton";
 import { mortgageFunction, interestOnly } from "../../utils/mortgageFunction";
+import { useContextHook } from "../../hooks/useContext";
 
 type FormProp = {
   setIsCalculated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function FormApp({ setIsCalculated }: FormProp) {
+  const { setMortgageResult } = useContextHook();
   const {
     handleSubmit,
     control,
@@ -35,9 +37,19 @@ function FormApp({ setIsCalculated }: FormProp) {
     console.log("Form submitted:", data);
     // CHECK WHICH RADIO IS
     if (type === "repayment") {
-      mortgageFunction(amount, term, rate);
+      setMortgageResult((prev) => ({
+        ...prev,
+        loanTotal: String(mortgageFunction(amount, term, rate).totalRepayment),
+        loanMonthly: String(
+          mortgageFunction(amount, term, rate).monthlyRepayment
+        ),
+      }));
     } else {
-      interestOnly(amount, rate);
+      setMortgageResult((prev) => ({
+        ...prev,
+        interestTotal: String(interestOnly(amount, rate).totalRepayment),
+        interestMonthly: String(interestOnly(amount, rate).monthlyRepayment),
+      }));
     }
     setIsCalculated(true);
     reset();
