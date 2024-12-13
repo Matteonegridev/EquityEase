@@ -1,0 +1,8 @@
+@use "../utils/mixins" as m;
+@use "../utils/functions" as f;
+@use "../utils/variables" as *;
+
+body {
+  padding-inline: f.rem(10);
+  padding-block: f.rem(25);
+}

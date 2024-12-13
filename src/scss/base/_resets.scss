@@ -1,3 +1,5 @@
+@use "../utils/variables" as *;
+
 *,
 *::after,
 *::before {
@@ -8,6 +10,21 @@
   margin: 0;
   padding: 0;
 }
+// ANIMATION DISABLER:
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
 // HTML & BODY:
 html:focus-within {
   scroll-behavior: smooth;
@@ -17,6 +34,7 @@ body {
   line-height: 1.5;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
+  font-family: $font;
 }
 // IMAGES RESET:
 img,
@@ -67,19 +85,4 @@ a:not([class]) {
   text-decoration-skip-ink: none;
   -webkit-tap-highlight-color: transparent;
   color: currentColor;
-}
-// ANIMATION DISABLER:
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-    transition: none;
-  }
 }

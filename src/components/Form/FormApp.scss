@@ -5,10 +5,8 @@
 
 .form {
   @include m.flex(_, center, column);
-  flex-direction: column;
   width: 80%;
   margin: auto;
   padding-top: f.rem(15);
-  font-family: $font;
   font-weight: map.get($font-weights, "bold");
 }
