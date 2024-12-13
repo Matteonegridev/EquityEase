@@ -24,6 +24,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 design/
+./src/api/*
+./src/components/SelectCurrency/
 
 node_modules
 dist

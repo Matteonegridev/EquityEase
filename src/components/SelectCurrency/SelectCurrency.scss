@@ -1,0 +1,8 @@
+@use "/src/scss/utils/variables" as *;
+
+.select-label {
+  font-family: $font;
+}
+.form-control {
+  width: 50%;
+}
