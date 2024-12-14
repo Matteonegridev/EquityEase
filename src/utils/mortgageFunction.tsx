@@ -25,9 +25,9 @@ export const mortgageFunction = (
 
 export const interestOnly = (amount: string, rate: string) => {
   const monthlyInterest = Number(rate) / 100 / 12;
-  const monthlyRepayment = Number(amount) * monthlyInterest;
+  const monthlyRepayment = (Number(amount) * monthlyInterest).toFixed(2);
 
-  const totalRepayment = monthlyRepayment * 12;
+  const totalRepayment = (Number(monthlyRepayment) * 12).toFixed(2);
   console.log(
     "Total Repayment for one year:",
     totalRepayment,

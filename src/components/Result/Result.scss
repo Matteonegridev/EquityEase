@@ -2,3 +2,59 @@
 @use "/src/scss/utils/mixins" as m;
 @use "/src/scss/utils/variables" as *;
 @use "sass:map";
+
+.result-showed {
+  text-align: left;
+}
+
+.section {
+  &__title {
+    color: $white;
+    font-size: $fontclamp-2xl;
+    margin-bottom: f.rem(16);
+  }
+
+  &__text {
+    color: $white;
+    font-size: $fontclamp-lg;
+    font-weight: map.get($font-weights, "regular");
+  }
+}
+.inner-box {
+  margin-top: f.rem(16);
+  background: rgb(12, 31, 42);
+  border-top: 3px $lime solid;
+  padding: 0 f.rem(16);
+  border-radius: f.rem(8);
+}
+.border {
+  border-bottom: 1px $slate-700 solid;
+}
+.box {
+  @include m.flex(_, center, column);
+  gap: f.rem(8);
+
+  &__title {
+    margin-top: f.rem(10);
+    color: $white;
+    font-size: $fontclamp-lg;
+    font-weight: map.get($font-weights, "regular");
+  }
+
+  &--yellow {
+    color: $lime;
+    font-size: f.rem(40);
+    font-weight: map.get($font-weights, "bold");
+    margin-bottom: f.rem(5);
+  }
+
+  &--white {
+    color: $white;
+    font-size: f.rem(24);
+    font-weight: map.get($font-weights, "bold");
+    margin-bottom: f.rem(8);
+  }
+}
+.extra-margin {
+  margin-top: f.rem(15);
+}

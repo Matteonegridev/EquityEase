@@ -1,15 +1,28 @@
 @use "/src/scss/utils/variables" as *;
 @use "/src/scss/utils/mixins" as *;
 @use "/src/scss/utils/functions" as f;
+@use "sass:map";
 
 .result-section {
   background-color: $slate-900;
   padding-inline: f.rem(25);
   padding-block: f.rem(20);
 
+  &__box {
+    padding-block-start: f.rem(10);
+    text-align: center;
+  }
+
   &__title {
+    color: $white;
+    font-size: $fontclamp-2xl;
   }
 
   &__text {
+    color: $white;
+    font-size: $fontclamp-lg;
+    font-weight: map.get($font-weights, "regular");
+    line-height: 1.7;
+    padding-block-start: f.rem(16);
   }
 }

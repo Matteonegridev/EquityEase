@@ -1,4 +1,5 @@
 import { useContextHook } from "../../hooks/useContext";
+import "./Result.scss";
 
 function ResultDisplay() {
   const { mortgageResult, isChecked } = useContextHook();
@@ -13,23 +14,35 @@ function ResultDisplay() {
           again.{" "}
         </p>
       </div>
-      <div className="result-showed--box">
+      <div className="inner-box">
         {isChecked === "repayment" && (
-          <div className="box">
-            <h6 className="box__title">Your monthly repayment</h6>
-            <p className="box--yellow">$ {mortgageResult.loanMonthly}</p>
-            <h6 className="box__title">Total you'll repay over the term</h6>
-            <p className="box-white">$ {mortgageResult.loanTotal}</p>
-          </div>
+          <>
+            <div className="box border">
+              <h6 className="box__title">Your monthly repayment</h6>
+              <p className="box--yellow">$ {mortgageResult.loanMonthly}</p>
+            </div>
+            <div className="box">
+              <h6 className="box__title extra-margin">
+                Total you'll repay over the term
+              </h6>
+              <p className="box--white">$ {mortgageResult.loanTotal}</p>
+            </div>
+          </>
         )}
-        __
         {isChecked === "interest" && (
-          <div className="box">
-            <h6 className="box__title">Your monthly interest</h6>
-            <p className="box--yellow">$ {mortgageResult.interestMonthly}</p>
-            <h6 className="box__title">Total interest over the term</h6>
-            <p className="box-white">$ {mortgageResult.interestTotal}</p>
-          </div>
+          <>
+            <div className="box border">
+              <h6 className="box__title">Your monthly interest</h6>
+              <p className="box--yellow">$ {mortgageResult.interestMonthly}</p>
+            </div>
+
+            <div className="box">
+              <h6 className="box__title extra-margin">
+                Total interest over the term
+              </h6>
+              <p className="box--white">$ {mortgageResult.interestTotal}</p>
+            </div>
+          </>
         )}
       </div>
     </section>
