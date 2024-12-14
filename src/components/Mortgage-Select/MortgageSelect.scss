@@ -1,0 +1,62 @@
+@use "/src/scss/utils/functions" as f;
+@use "/src/scss/utils/variables" as *;
+@use "/src/scss/utils/mixins" as m;
+@use "sass:map";
+
+//*form-select in Form-App file as the className has been added into the FormApp.tsx
+
+.select {
+  @include m.flex(center, _, row);
+  gap: f.rem(20);
+  border: 1px $slate-700 solid;
+  padding: f.rem(10) f.rem(10);
+  border-radius: 3px;
+
+  &:has(.select--input:checked) {
+    border-color: $lime;
+    background: rgba($lime, 0.1);
+  }
+
+  &--label {
+    font-size: $fontclamp-xl;
+    color: $slate-700;
+    font-weight: map.get($font-weights, "bold");
+    flex-grow: 1;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &--input {
+    // HIDE NATIVE RADIO + MAKING NEW:
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    position: relative;
+    width: f.rem(22);
+    height: f.rem(22);
+    border-radius: 50%;
+    border: 1px $slate-900 solid;
+    @include m.flex(center, center, _);
+  }
+  &--input::before {
+    // INSIDE STYLE:
+    position: absolute;
+    background-color: $lime;
+    content: "";
+    transform: scale(0);
+    width: f.rem(13);
+    height: f.rem(13);
+    border-radius: 50%;
+    transition: 120ms transform ease-in-out;
+  }
+  &--input:checked {
+    border: 1px $lime solid;
+  }
+  &--input:checked::before {
+    transform: scale(1);
+  }
+
+  &--error {
+  }
+}

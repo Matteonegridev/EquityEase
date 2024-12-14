@@ -18,3 +18,10 @@ $font-weights: (
   "regular": 500,
   "bold": 700,
 );
+
+$fontclamp-xsm: clamp(0.4823rem, 0.273rem + 1.0462vw, 1.28rem);
+$fontclamp-sm: clamp(0.5787rem, 0.3108rem + 1.3394vw, 1.6rem);
+$fontclamp-md: clamp(0.6944rem, 0.352rem + 1.7122vw, 2rem);
+$fontclamp-lg: clamp(0.8333rem, 0.3962rem + 2.1858vw, 2.5rem);
+$fontclamp-xl: clamp(1rem, 0.4426rem + 2.7869vw, 3.125rem);
+$fontclamp-2xl: clamp(1.2rem, 0.4902rem + 3.5492vw, 3.9063rem);

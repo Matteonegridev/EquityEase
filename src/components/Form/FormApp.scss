@@ -5,8 +5,31 @@
 
 .form {
   @include m.flex(_, center, column);
-  width: 80%;
-  margin: auto;
   padding-top: f.rem(15);
-  font-weight: map.get($font-weights, "bold");
+  gap: f.rem(10);
+  width: 100%;
+
+  &__title {
+    font-size: $fontclamp-2xl;
+    font-weight: map.get($font-weights, "bold");
+  }
+  &--reset {
+    color: $slate-500;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    text-decoration: underline;
+    font-size: $fontclamp-xl;
+    text-align: left;
+    margin-block-end: f.rem(15);
+    margin-top: f.rem(-5);
+  }
+}
+
+//SELECT GROUP STYLE:
+.select-form {
+  @include m.flex(_, center, column);
+  padding-block: f.rem(10);
+  gap: f.rem(20);
+  position: relative;
 }

@@ -1,5 +1,6 @@
 import { useContextHook } from "../../hooks/useContext";
 import Result from "../Result/Result";
+import "./ResultSection.scss";
 
 function ResultSection() {
   const { isChecked } = useContextHook();

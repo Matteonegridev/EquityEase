@@ -66,6 +66,7 @@ function FormApp() {
         name="amount"
         render={({ field }) => (
           <MortgageInput
+            icon="$"
             id="amount"
             {...field}
             text="Morgage Amount"
@@ -79,6 +80,7 @@ function FormApp() {
         name="term"
         render={({ field }) => (
           <MortgageInput
+            icon="years"
             id="term"
             {...field}
             text="Morgage Term"
@@ -92,6 +94,7 @@ function FormApp() {
         name="rate"
         render={({ field }) => (
           <MortgageInput
+            icon="%"
             id="rate"
             {...field}
             text="Interest Rate"
@@ -103,7 +106,7 @@ function FormApp() {
         name="type"
         control={control}
         render={({ field }) => (
-          <>
+          <div className="select-form">
             <MortgageSelect
               id="repayment"
               {...field}
@@ -119,7 +122,7 @@ function FormApp() {
               checked={field.value === "interest"}
               error={errors.type?.message}
             />
-          </>
+          </div>
         )}
       />
       <SubmitButton text="Calculate Repayments" />
