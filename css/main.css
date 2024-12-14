@@ -92,9 +92,4 @@ a:not([class]) {
   color: currentColor;
 }
 
-body {
-  padding-inline: 0.625rem;
-  padding-block: 0.625rem;
-}
-
 /*# sourceMappingURL=main.css.map */

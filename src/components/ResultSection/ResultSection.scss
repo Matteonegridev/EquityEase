@@ -1,3 +1,15 @@
 @use "/src/scss/utils/variables" as *;
 @use "/src/scss/utils/mixins" as *;
 @use "/src/scss/utils/functions" as f;
+
+.result-section {
+  background-color: $slate-900;
+  padding-inline: f.rem(25);
+  padding-block: f.rem(20);
+
+  &__title {
+  }
+
+  &__text {
+  }
+}

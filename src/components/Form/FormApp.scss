@@ -8,6 +8,8 @@
   padding-top: f.rem(15);
   gap: f.rem(10);
   width: 100%;
+  padding-inline: f.rem(25);
+  padding-block: f.rem(20);
 
   &__title {
     font-size: $fontclamp-2xl;
