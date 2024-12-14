@@ -22,6 +22,7 @@ function ResultDisplay() {
             <p className="box-white">$ {mortgageResult.loanTotal}</p>
           </div>
         )}
+        __
         {isChecked === "interest" && (
           <div className="box">
             <h6 className="box__title">Your monthly interest</h6>
