@@ -15,7 +15,7 @@ input[type="number"] {
 }
 
 .relative {
-  position: relative;
+  @include m.flex(_, _, row);
 }
 
 .form__label {
@@ -28,30 +28,34 @@ input[type="number"] {
 }
 
 .form__input {
-  padding: f.rem(10) f.rem(3);
-  border-radius: f.rem(5);
+  padding: f.rem(10) f.rem(8);
+  border-radius: f.rem(5) 0 0 f.rem(5);
   border: 1px $slate-700 solid;
   outline: none;
   width: 100%;
-  transition: all 150ms ease-in;
+  font-family: inherit;
+  font-weight: map.get($font-weights, "bold");
+  color: $slate-900;
 
   &:focus {
     border: 1px $lime solid;
   }
 
   &--value {
-    position: absolute;
-    top: f.rem(1);
-    left: f.rem(0.7);
     color: $slate-700;
     font-weight: map.get($font-weights, "bold");
     background: $slate-100;
-    border-radius: f.rem(5) 0 0 f.rem(5);
+    border-radius: 0 f.rem(5) f.rem(5) 0;
     padding: f.rem(10) f.rem(12);
     transition: all 150ms ease-in;
+    margin-left: f.rem(-1);
+    border: 1px $slate-700 solid;
+    border-left: none;
   }
+
   &--value.value-error {
     background-color: $red;
+    border: 1px $red solid;
     color: $white;
   }
 }
@@ -61,4 +65,11 @@ input[type="number"] {
   font-size: f.rem(10);
   color: $red;
   font-weight: map.get($font-weights, "regular");
+}
+.form__input:focus-within ~ .form__input--value {
+  background: $lime;
+  color: $slate-900;
+  border: $lime;
+  border-left: none;
+  transition: all 150ms ease-in;
 }

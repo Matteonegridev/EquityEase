@@ -9,10 +9,8 @@ type InputProps = ComponentProps<"input"> & {
 
 const MortgageInput = forwardRef<HTMLInputElement, InputProps>(
   ({ text, id, error, icon, ...rest }, ref) => {
-    const form__input = `${error ? "form__input border" : "form__input"}`;
-    const form__value = `${
-      error ? "form__input--value value-error" : "form__input--value"
-    }`;
+    const form__input = `form__input ${error ? " border" : ""}`;
+    const form__value = `form__input--value ${error ? " value-error" : ""}`;
 
     return (
       <>
