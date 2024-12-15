@@ -13,7 +13,7 @@ const MortgageInput = forwardRef<HTMLInputElement, InputProps>(
     const form__value = `form__input--value ${error ? " value-error" : ""}`;
 
     return (
-      <>
+      <div className="box-input">
         <label htmlFor={id} className="form__label">
           {text}
         </label>
@@ -28,7 +28,7 @@ const MortgageInput = forwardRef<HTMLInputElement, InputProps>(
           <p className={form__value}>{icon}</p>
         </div>
         {error && <p className="form--error">{error}</p>}
-      </>
+      </div>
     );
   }
 );

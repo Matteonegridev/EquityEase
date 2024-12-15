@@ -11,20 +11,24 @@
   padding-inline: f.rem(25);
   padding-block: f.rem(20);
 
-  &__title {
-    font-size: $fontclamp-2xl;
-    font-weight: map.get($font-weights, "bold");
-  }
-  &--reset {
-    color: $slate-500;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    text-decoration: underline;
-    font-size: $fontclamp-xl;
-    text-align: left;
-    margin-block-end: f.rem(15);
-    margin-top: f.rem(-5);
+  &__box {
+    @include m.flex(start, space-around, column);
+    gap: f.rem(8);
+
+    &--title {
+      font-size: $fontclamp-24-32;
+      font-weight: map.get($font-weights, "bold");
+    }
+    &--reset {
+      color: $slate-500;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      text-decoration: underline;
+      font-size: $fontclamp-12-20;
+      text-align: left;
+      margin-bottom: auto;
+    }
   }
 }
 
@@ -34,4 +38,33 @@
   padding-block: f.rem(10);
   gap: f.rem(20);
   position: relative;
+}
+// FIX MEDIA:
+.desktop-input {
+  @include m.flex(_, center, column);
+  gap: f.rem(10);
+}
+
+@include m.media("desktop") {
+  .form {
+    width: 80%;
+    min-height: 100dvh;
+    margin: 0 auto;
+
+    &__box {
+      @include m.flex(center, space-between, row);
+      padding-block-end: f.rem(16);
+
+      &--title {
+        margin: 0;
+      }
+      &--reset {
+        margin-top: auto;
+        cursor: pointer;
+      }
+    }
+  }
+  .desktop-input {
+    @include m.flex(center, space-between, row);
+  }
 }

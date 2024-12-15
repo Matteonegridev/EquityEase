@@ -56,10 +56,12 @@ function FormApp() {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="form__title">Mortgage Calculator</h1>
-      <button className="btn form--reset" type="reset" onClick={onReset}>
-        Clear All
-      </button>
+      <div className="form__box">
+        <h1 className="form__box--title">Mortgage Calculator</h1>
+        <button className="form__box--reset" type="reset" onClick={onReset}>
+          Clear All
+        </button>
+      </div>
       <Controller
         defaultValue={""}
         control={control}
@@ -74,34 +76,36 @@ function FormApp() {
           />
         )}
       />
-      <Controller
-        defaultValue={""}
-        control={control}
-        name="term"
-        render={({ field }) => (
-          <MortgageInput
-            icon="years"
-            id="term"
-            {...field}
-            text="Morgage Term"
-            error={errors.term?.message}
-          />
-        )}
-      />
-      <Controller
-        defaultValue={""}
-        control={control}
-        name="rate"
-        render={({ field }) => (
-          <MortgageInput
-            icon="%"
-            id="rate"
-            {...field}
-            text="Interest Rate"
-            error={errors.rate?.message}
-          />
-        )}
-      />
+      <div className="desktop-input">
+        <Controller
+          defaultValue={""}
+          control={control}
+          name="term"
+          render={({ field }) => (
+            <MortgageInput
+              icon="years"
+              id="term"
+              {...field}
+              text="Morgage Term"
+              error={errors.term?.message}
+            />
+          )}
+        />
+        <Controller
+          defaultValue={""}
+          control={control}
+          name="rate"
+          render={({ field }) => (
+            <MortgageInput
+              icon="%"
+              id="rate"
+              {...field}
+              text="Interest Rate"
+              error={errors.rate?.message}
+            />
+          )}
+        />
+      </div>
       <Controller
         name="type"
         control={control}

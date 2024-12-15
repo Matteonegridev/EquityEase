@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="app">
       <ContextProvider>
-        <FormApp />
-        <ResultSection />
+        <div className="desktop-view">
+          <FormApp />
+          <ResultSection />
+        </div>
       </ContextProvider>
     </div>
   );

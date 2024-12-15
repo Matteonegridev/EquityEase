@@ -12,7 +12,7 @@
     flex-wrap: wrap;
     gap: f.rem(16);
     font-family: inherit;
-    font-size: $fontclamp-xl;
+    font-size: $fontclamp-1624;
     color: $slate-900;
     font-weight: map.get($font-weights, "bold");
     border: none;
@@ -28,6 +28,14 @@
 
     &:hover {
       background: rgba($lime, 0.5);
+    }
+  }
+}
+
+@include m.media("desktop") {
+  .submit {
+    &--button {
+      width: 100%;
     }
   }
 }

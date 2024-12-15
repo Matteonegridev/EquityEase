@@ -9,7 +9,7 @@
   @include m.flex(center, _, row);
   gap: f.rem(20);
   border: 1px $slate-700 solid;
-  padding: f.rem(10) f.rem(10);
+  padding: f.rem(13) f.rem(10);
   border-radius: 3px;
 
   &:has(.select--input:checked) {
@@ -18,8 +18,8 @@
   }
 
   &--label {
-    font-size: $fontclamp-xl;
-    color: $slate-700;
+    font-size: $fontclamp-1624;
+    color: $slate-900;
     font-weight: map.get($font-weights, "bold");
     flex-grow: 1;
     cursor: pointer;
@@ -58,5 +58,13 @@
   }
 
   &--error {
+  }
+}
+
+@include m.media("desktop") {
+  .select {
+    &--label {
+      font-size: f.rem(16);
+    }
   }
 }

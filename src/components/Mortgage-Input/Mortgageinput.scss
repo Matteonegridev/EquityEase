@@ -26,9 +26,13 @@ input[type="number"] {
 .form__input.border {
   border: 1px $red solid;
 }
+.box-input {
+  @include m.flex(_, center, column);
+  gap: f.rem(8);
+}
 
 .form__input {
-  padding: f.rem(10) f.rem(8);
+  padding: f.rem(13) f.rem(8);
   border-radius: f.rem(5) 0 0 f.rem(5);
   border: 1px $slate-700 solid;
   outline: none;
@@ -46,7 +50,7 @@ input[type="number"] {
     font-weight: map.get($font-weights, "bold");
     background: $slate-100;
     border-radius: 0 f.rem(5) f.rem(5) 0;
-    padding: f.rem(10) f.rem(12);
+    padding: f.rem(13) f.rem(13);
     transition: all 150ms ease-in;
     margin-left: f.rem(-1);
     border: 1px $slate-700 solid;
@@ -72,4 +76,9 @@ input[type="number"] {
   border: $lime;
   border-left: none;
   transition: all 150ms ease-in;
+}
+
+@include m.media("desktop") {
+  .form__input {
+  }
 }

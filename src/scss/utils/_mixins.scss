@@ -16,3 +16,25 @@
   left: $left;
   transform: translate(-50%, -50%);
 }
+
+//MEDIA:
+@mixin media($device) {
+  @if ($device == "phone") {
+    @media (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+  @if ($device == "tablet-potrait") {
+    @media (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+  @if ($device == "desktop") {
+    @media (min-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 @use "/src/scss/utils/variables" as *;
-@use "/src/scss/utils/mixins" as *;
+@use "/src/scss/utils/mixins" as m;
 @use "/src/scss/utils/functions" as f;
 @use "sass:map";
 
@@ -24,5 +24,11 @@
     font-weight: map.get($font-weights, "regular");
     line-height: 1.7;
     padding-block-start: f.rem(16);
+  }
+}
+
+@include m.media("desktop") {
+  .result-section {
+    border-radius: 0 20px 20px 15%;
   }
 }
