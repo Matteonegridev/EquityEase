@@ -10,13 +10,14 @@
 .section {
   &__title {
     color: $white;
-    font-size: $fontclamp-2xl;
+    font-size: $fontclamp-24-32;
     margin-bottom: f.rem(16);
   }
 
   &__text {
     color: $white;
-    font-size: $fontclamp-lg;
+    font-size: $fontclamp-12-20;
+    line-height: 1.7;
     font-weight: map.get($font-weights, "regular");
   }
 }
@@ -37,7 +38,7 @@
   &__title {
     margin-top: f.rem(10);
     color: $white;
-    font-size: $fontclamp-lg;
+    font-size: $fontclamp-12-20;
     font-weight: map.get($font-weights, "regular");
   }
 
@@ -57,4 +58,22 @@
 }
 .extra-margin {
   margin-top: f.rem(15);
+}
+
+@include m.media("desktop") {
+  .result-showed {
+    @include m.flex(center, center, column);
+  }
+  .section {
+    width: 80%;
+  }
+  .inner-box {
+    margin-top: f.rem(16);
+    width: 80%;
+  }
+  .box {
+    width: 100%;
+    height: 10rem;
+    padding: f.rem(8);
+  }
 }
