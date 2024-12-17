@@ -142,6 +142,58 @@ export const ContextProvider = ({ children }: ContextProps) => {
 Here we use the spread operator to get the native input values.
 Another important key to function this component is the ref we need to pass in.
 
+5. Another yet important feature is the way we are able to read the parameters (amount, term, rate) we need to use in our function to calculate the mortgage:
+
+```js
+const {
+  handleSubmit,
+  control,
+  reset,
+  watch,
+  formState: { errors },
+} = useForm <
+schemaValues >
+{
+  resolver: zodResolver(schemaValidation),
+};
+
+const amount = watch("amount");
+const term = watch("term");
+const rate = watch("rate");
+const type = watch("type");
+```
+
+Here we import the 'watch' from RHF and we use it to actually watch the parameters defined here:
+
+```js
+const onSubmit = (data: schemaValues) => {
+  console.log("Form submitted:", data);
+  // CHECK WHICH RADIO IS
+  if (type === "repayment") {
+    setIsChecked("repayment");
+    setMortgageResult((prev) => ({
+      ...prev,
+      loanTotal: String(mortgageFunction(amount, term, rate).totalRepayment),
+      loanMonthly: String(
+        mortgageFunction(amount, term, rate).monthlyRepayment
+      ),
+    }));
+  } else {
+    setIsChecked("interest");
+    setMortgageResult((prev) => ({
+      ...prev,
+      interestTotal: String(interestOnly(amount, rate).totalRepayment),
+      interestMonthly: String(interestOnly(amount, rate).monthlyRepayment),
+    }));
+  }
+
+  reset();
+};
+```
+
+The logic here is pretty much straightforward: since we created 2 functions for the math (interest and repayement), we return from them 4 values. These values are represented by morgageResult useState.
+the value take the function with the parameters we are watching and converted to string.
+
 ## Author
 
 Matteo Negri
