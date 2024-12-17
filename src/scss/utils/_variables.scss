@@ -1,8 +1,4 @@
-@font-face {
-  font-family: PlusJakartaSans;
-  src: url(/assets/fonts/static/PlusJakartaSans-Medium.ttf) format("ttf"),
-    url(/assets/fonts/static/PlusJakartaSans-Bold.ttf) format("ttf");
-}
+@use "./fonts" as *;
 
 $font: "Plus Jakarta Sans";
 $lime: rgb(215, 218, 47);
@@ -15,7 +11,7 @@ $slate-700: hsl(200, 24%, 40%);
 $slate-900: hsl(202, 55%, 16%);
 $font-paragraph: 16px;
 $font-weights: (
-  "regular": 500,
+  "regular": 400,
   "bold": 700,
 );
 
